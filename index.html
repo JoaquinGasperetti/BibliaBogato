@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BOGATO Wiki Interactiva &amp; Biblia de Desarrollo | HK Entertainment</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="bg-bogato-radial min-h-screen text-slate-100 antialiased selection:bg-orange-500 selection:text-slate-950">
+
+  <!-- Top Sticky Header -->
+  <header class="sticky top-0 z-40 backdrop-blur-xl bg-slate-950/85 border-b border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col gap-3">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <!-- Brand & Logo -->
+        <div class="flex items-center gap-3.5">
+          <img
+            src="assets/img/logo_bogato.png"
+            alt="Logo Bogato"
+            onclick="window.setBogatoTab('atlas')"
+            class="h-10 sm:h-11 w-auto object-contain cursor-pointer rounded-lg bg-slate-900/90 px-2 py-1 border border-slate-800"
+          />
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-[11px] font-extrabold uppercase tracking-widest text-orange-400">
+                HK Entertainment • Codex Interno
+              </span>
+              <span class="hidden sm:inline-block px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/40">
+                Canon Unificado 2018–2026
+              </span>
+            </div>
+            <h1 class="text-base sm:text-xl font-black tracking-tight text-white">
+              UNIVERSO BOGATO: WIKI INTERACTIVA DE DESARROLLO
+            </h1>
+          </div>
+        </div>
+
+        <!-- Global Instant Search Bar -->
+        <div class="relative w-full md:w-96">
+          <div class="relative flex items-center">
+            <span class="absolute left-3.5 text-slate-400 text-sm pointer-events-none">🔍</span>
+            <input
+              id="global-search-input"
+              type="text"
+              placeholder="Buscar personaje, fase, isla, arma o capítulo..."
+              class="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-900/90 border border-slate-700/80 text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-orange-500 transition"
+            />
+          </div>
+          <!-- Dropdown Search Results -->
+          <div
+            id="global-search-results"
+            class="hidden absolute left-0 right-0 mt-2 rounded-2xl bg-slate-950/95 backdrop-blur-xl border border-orange-500/40 shadow-2xl z-50"
+          ></div>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav id="wiki-nav-tabs" class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar"></nav>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-5 pb-2">
+    <div class="relative rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 shadow-2xl">
+      <div class="grid grid-cols-1 lg:grid-cols-12 items-center">
+        <div class="lg:col-span-7 p-5 sm:p-7 space-y-3 z-10">
+          <div class="inline-flex flex-wrap items-center gap-2 text-xs font-bold text-amber-300 bg-orange-500/15 border border-orange-500/30 px-3 py-1 rounded-full">
+            <span>✨ "Dos islas. Dos linajes. Un mapa que no debió ser abierto."</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white leading-tight">
+            De la Fiesta en <span class="text-sky-400">Ciudad Bogato</span> a las Cenizas de <span class="text-orange-400">Draktharia</span> y <span class="text-purple-400">Sylpharia</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Esta wiki interactiva reúne y conecta todas las etapas del proyecto de <strong>HK Entertainment</strong>: el mundo abierto urbano y el Interludio del Padre de <em>BibliaBogato.docx</em> (2018–2021), la geografía de <em>Las Islas del Fulgor</em>, las hojas de evolución de 5 fases de <strong>Leo</strong>, <strong>Marcos</strong> y <strong>Kasumi</strong>, y los guiones extendidos <em>Director's Cut</em> (2025–2026).
+          </p>
+          <div class="flex flex-wrap gap-2 pt-1">
+            <button
+              type="button"
+              onclick="window.setBogatoTab('atlas')"
+              class="px-3.5 py-2 rounded-xl text-xs font-bold bg-orange-500 hover:bg-orange-400 text-slate-950 transition"
+            >
+              🗺️ Explorar Mapas Interactivos
+            </button>
+            <button
+              type="button"
+              onclick="window.setBogatoTab('personajes')"
+              class="px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white border border-slate-700 transition"
+            >
+              ⚔️ Ver Fases de Leo, Marcos y Kasumi
+            </button>
+            <button
+              type="button"
+              onclick="window.setBogatoTab('guion')"
+              class="px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white border border-slate-700 transition"
+            >
+              📜 Leer Guion Definitivo por Actos
+            </button>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 relative h-52 sm:h-64 lg:h-full min-h-[220px]">
+          <img
+            src="assets/img/thumbnail_0.jpg"
+            alt="Key Art Universo Bogato"
+            onclick="window.openBogatoLightbox('assets/img/thumbnail_0.jpg', 'Key Art Oficial — Universo Bogato — HK Entertainment')"
+            class="w-full h-full object-cover zoomable-img"
+          />
+          <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/30 to-transparent pointer-events-none hidden lg:block"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dynamic Main Content Container -->
+  <main id="wiki-main-content" class="max-w-7xl mx-auto px-4 sm:px-6 py-6"></main>
+
+  <!-- Footer with Official Source Links -->
+  <footer class="border-t border-slate-800/80 bg-slate-950/90 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-xs text-slate-400">
+      <div class="space-y-1">
+        <div class="font-bold text-white text-sm">
+          HK Entertainment — Biblia &amp; Wiki Interactiva del Universo Bogato
+        </div>
+        <p>
+          Preparado para el equipo de desarrollo y listo para desplegar directamente en GitHub Pages.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a href="https://hkentertainment.com.ar/" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 transition">
+          🌐 Sitio Web HK Entertainment
+        </a>
+        <a href="https://drive.google.com/drive/folders/1JsHfuNa2AceZlYUhtG-v6vNXsmyjL0HX" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 transition">
+          📁 Drive: BogatoLostMedia (2018–2021)
+        </a>
+        <a href="https://drive.google.com/drive/folders/1yogKMNIvd3bzypH_tDlZkpHz8B_b5Wf3" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 transition">
+          📁 Drive: Bogato posta xd (2025–2026)
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Fullscreen Image Lightbox Modal -->
+  <div
+    id="lightbox-modal"
+    onclick="window.closeBogatoLightbox()"
+    class="hidden fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md items-center justify-center p-4"
+  >
+    <div
+      onclick="event.stopPropagation()"
+      class="relative max-w-5xl w-full bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden shadow-2xl"
+    >
+      <div class="flex items-center justify-between px-4 py-3 bg-slate-950 border-b border-slate-800">
+        <span id="lightbox-caption" class="text-xs sm:text-sm font-bold text-white truncate pr-4"></span>
+        <button
+          type="button"
+          onclick="window.closeBogatoLightbox()"
+          class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-orange-500 hover:text-slate-950 text-xs font-bold text-slate-200 transition"
+        >
+          ✕ Cerrar (Esc)
+        </button>
+      </div>
+      <div class="p-3 bg-slate-950 flex items-center justify-center max-h-[80vh] overflow-auto">
+        <img id="lightbox-img" src="" alt="Vista ampliada" class="max-h-[75vh] w-auto object-contain rounded-lg" />
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
